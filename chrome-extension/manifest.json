@@ -1,0 +1,18 @@
+{
+    "name": "myntra-extension",
+    "description": "checkout operation tracker",
+    "version": "1.0.1",
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "scripting"
+      ],
+      "host_permissions": [
+        "https://*.myntra.com/*"
+    ]
+  }
+  

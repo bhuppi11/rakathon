@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartCare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgba(131, 100, 242);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 200px;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        select {
+            width: 200px;
+        }
+
+        button {
+            display: block;
+            width: 100px;
+            padding: 10px;
+            background-color: rgba(131, 100, 242);
+            color: #fff;
+            border: none;
+            font-weight: bolder;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thumbnails {
+            display: none; /* Initially hide the thumbnails */
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .thumbnails.show {
+            display: flex; /* Show the thumbnails when needed */
+        }
+
+        .thumbnail {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .thumbnail img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 400px;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CartCare</h1>
+    </header>
+    <div class="container">
+        <form id="cartForm">
+            <input type="text" id="name" name="name" placeholder="Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+            <select id="persona" name="persona" required>
+                <option value="">Select Persona</option>
+                <option value="Student">Student</option>
+                <option value="Housewife">Housewife</option>
+                <option value="Working class">Working class</option>
+            </select>
+            <button type="submit" id="shopButton">Shop</button>
+        </form>
+        
+        <div class="thumbnails" id="thumbnails">
+            <div class="thumbnail" onclick="openInNewTab('https://www.myntra.com/')">
+                <img src="myntra.avif" alt="Myntra">
+            </div>
+            <div class="thumbnail" onclick="openInNewTab('https://www.amazon.com/')">
+                <img src="amazon.jpeg" alt="Amazon">
+            </div>
+            <div class="thumbnail" onclick="openInNewTab('https://www.flipkart.com/')">
+                <img src="flipkart.png" alt="Flipkart">
+            </div>
+            <div class="thumbnail" onclick="openInNewTab('https://www.ajio.com/')">
+                <img src="ajio.png" alt="Ajio">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cartForm = document.getElementById("cartForm");
+        const thumbnails = document.getElementById("thumbnails");
+
+        function openInNewTab(url) {
+            const newTab = window.open(url, "_blank");
+            if (newTab) {
+                newTab.focus();
+            } else {
+                alert("Please allow pop-ups to open the webpage.");
+            }
+        }
+
+        cartForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Prevent form submission
+            const formData = new FormData(cartForm);
+
+            if (cartForm.checkValidity()) {
+                // Store the form data in local storage
+                localStorage.setItem("formData", JSON.stringify(Object.fromEntries(formData.entries())));
+
+                thumbnails.classList.add("show");
+            } else {
+                // The browser will display the default validation messages
+            }
+        });
+
+        // Check if there is stored form data and populate the form fields
+        const storedFormData = localStorage.getItem("formData");
+        if (storedFormData) {
+            const parsedData = JSON.parse(storedFormData);
+            for (const key in parsedData) {
+                document.getElementById(key).value = parsedData[key];
+            }
+        }
+
+
+        // Clear input fields on page load (reset)
+        window.addEventListener("load", () => {
+            const inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+            inputFields.forEach((field) => {
+                field.value = "";
+            });
+    });
+    </script>
+</body>
+</html>
