@@ -31,6 +31,8 @@
         input[type="text"],
         input[type="email"],
         input[type="tel"],
+        input[type="date"],
+        input[type="number"],
         select {
             width: 200px;
             padding: 10px;
@@ -38,11 +40,9 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             display: inline-block;
+            margin-top: 10px;
         }
 
-        select {
-            width: 200px;
-        }
 
         button {
             display: block;
@@ -85,13 +85,34 @@
             height: auto;
         }
 
-        iframe {
-            display: block;
-            width: 100%;
-            height: 400px;
-            border: none;
+        .studentOptions, .workingClassOptions, .houseWifeOptions {
+            display: none; /* Initially hide the thumbnails */
+            justify-content: space-between;
             margin-top: 20px;
         }
+
+        .studentOptions.show, .workingClassOptions.show, .houseWifeOptions.show {
+            display: flex; /* Show the thumbnails when needed */
+        }
+
+        .studentOption, .workingClassOption, .houseWifeOption {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .studentOption img,
+        .workingClassOption img,
+        .houseWifeOption img {
+            max-width: 50px; /* Adjust the maximum width as needed */
+            height: auto;
+            margin: 0 auto; /* Center the image horizontally */
+        }
+
     </style>
 </head>
 <body>
@@ -109,6 +130,33 @@
                 <option value="Housewife">Housewife</option>
                 <option value="Working class">Working class</option>
             </select>
+
+            <!--  -->
+            <select id="language" name="language" required>
+                <option value="">Language</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+                <option value="Tamil">Tamil</option>
+                <option value="Punjabi">Punjabi</option>
+            </select>
+
+            <input type="date" id="lastShoppingDate" name="lastShoppingDate" required>
+
+            <input type="number" id="maxDiscountAmount" name="maxDiscountAmount" placeholder="Max Discount" required>
+
+            <select id="codOption" name="codOption" required>
+                <option value="">COD Option</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+
+            <select id="freeDeliveryOption" name="freeDeliveryOption" required>
+                <option value="">Free Delivery</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+
+
             <button type="submit" id="shopButton">Shop</button>
         </form>
         
@@ -126,11 +174,106 @@
                 <img src="ajio.png" alt="Ajio">
             </div>
         </div>
+
+        <h2 style="text-align: center; display: none;" id="suggestionsHeading">Suggestions</h2>
+        
+        <div class="studentOptions" id="studentOptions">
+            
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/clothing')">
+                <img src="clothe.jpeg" alt="Professional Attire">
+                <p>Clothes</p>
+            </div>
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/laptop')">
+                <img src="laptop.jpeg" alt="Laptop">
+                <p>Laptop</p>
+            </div>
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/chair')">
+                <img src="chair.jpeg" alt="Chair">
+                <p>Chair</p>
+            </div>
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/mobile-phones')">
+                <img src="phone.jpeg" alt="Smartphone">
+                <p>Phone</p>
+            </div>
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/lunch-box')">
+                <img src="lunch.jpeg" alt="Lunch Containers">
+                <p>Lunch Box</p>
+            </div>
+            <div class="studentOption" onclick="openInNewTab('https://www.myntra.com/stationery')">
+                <img src="stationary.jpeg" alt="Gadgets">
+                <p>Stationary Items</p>
+            </div>
+        </div>
+
+        <div class="workingClassOptions" id="workingClassOptions">
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/work-wear')">
+                <img src="professional-clothe.jpeg" alt="Professional Attire">
+                <p>Professional Clothes</p>
+            </div>
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/laptop')">
+                <img src="laptop.jpeg" alt="Laptop">
+                <p>Laptop</p>
+            </div>
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/chair')">
+                <img src="chair.jpeg" alt="Chair">
+                <p>Chair</p>
+            </div>
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/mobile-phones')">
+                <img src="phone.jpeg" alt="Smartphone">
+                <p>Phone</p>
+            </div>
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/lunch-box')">
+                <img src="lunch.jpeg" alt="Lunch Containers">
+                <p>Lunch Box</p>
+            </div>
+            <div class="workingClassOption" onclick="openInNewTab('https://www.myntra.com/gadgets?utm_source=dms_google&utm_medium=pmax_cpc&utm_campaign=dms_google_pmax_cpc_Myntra_PMax_Gadgets_SOK&keyword=&matchtype=&target=&placement=&gclid=CjwKCAjw6eWnBhAKEiwADpnw9p6cdOvgyV7hlpExeyx6mcLp7iRR1jqD9GlUInJHGVQLr98SCpcvnhoCdVIQAvD_BwE')">
+                <img src="gadgets.jpeg" alt="Gadgets">
+                <p>Gadgets</p>
+            </div>
+        </div>
+
+        <div class="houseWifeOptions" id="houseWifeOptions">
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/kitchen-appliances')">
+                <img src="kitchen.jpeg" alt="Kitchen Appliances">
+                <p>Kitchen Appliances</p>
+            </div>
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/cookware-and-bakeware')">
+                <img src="cookware.jpeg" alt="Cookware and Bakeware">
+                <p>Cookware and Bakeware</p>
+            </div>
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/home-decor')">
+                <img src="home-decor.jpeg" alt="Home Decor">
+                <p>Home Decor</p>
+            </div>
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/home-organisers')">
+                <img src="organization-tools.jpeg" alt="Organizational Tools">
+                <p>Organizational Tools</p>
+            </div>
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/personal-care')">
+                <img src="personal-care.jpeg" alt="Fashion and Personal Care">
+                <p>Fashion and Personal Care</p>
+            </div>
+            <div class="houseWifeOption" onclick="openInNewTab('https://www.myntra.com/cleaning')">
+                <img src="cleaning.jpeg" alt="Cleaning Supplies">
+                <p>Cleaning Supplies</p>
+            </div>
+        </div>
     </div>
+
+    <div class="options" id="options">
+        <!-- Options based on persona will be displayed here -->
+    </div>  
 
     <script>
         const cartForm = document.getElementById("cartForm");
         const thumbnails = document.getElementById("thumbnails");
+        const persona = document.getElementById("persona");
+        const studentOptions = document.getElementById("studentOptions");
+        const houseWifeOptions = document.getElementById("houseWifeOptions");
+        const workingClassOptions = document.getElementById("workingClassOptions");
+        const suggestionsHeading = document.getElementById("suggestionsHeading"); // Get the heading element
+
+
 
         function openInNewTab(url) {
             const newTab = window.open(url, "_blank");
@@ -147,9 +290,25 @@
 
             if (cartForm.checkValidity()) {
                 // Store the form data in local storage
+                console.log(persona.value);
                 localStorage.setItem("formData", JSON.stringify(Object.fromEntries(formData.entries())));
 
                 thumbnails.classList.add("show");
+
+                if(persona.value === "Housewife") {
+                    studentOptions.classList.remove("show");
+                    workingClassOptions.classList.remove("show");
+                    houseWifeOptions.classList.add("show");
+                } else if(persona.value === "Student") {
+                    workingClassOptions.classList.remove("show");
+                    houseWifeOptions.classList.remove("show");
+                    studentOptions.classList.add("show");
+                } else if(persona.value === "Working class") {
+                    houseWifeOptions.classList.remove("show");
+                    studentOptions.classList.remove("show");
+                    workingClassOptions.classList.add("show");
+                }
+                suggestionsHeading.style.display = "block";
             } else {
                 // The browser will display the default validation messages
             }
@@ -165,13 +324,15 @@
         }
 
 
-        // Clear input fields on page load (reset)
+        // Clear input fields on page load (reset)  
         window.addEventListener("load", () => {
             const inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
             inputFields.forEach((field) => {
                 field.value = "";
             });
     });
+
+
     </script>
 </body>
 </html>
