@@ -13,14 +13,14 @@
         }
 
         header {
-            background-color: rgb(0,23,26);
+            background-color: rgb(2,37,42);
             color: #fff;
             text-align: center;
             padding: 20px 0;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 96%;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -86,13 +86,13 @@
         }
 
         .studentOptions, .workingClassOptions, .houseWifeOptions {
-            display: none; /* Initially hide the thumbnails */
+            display: none;
             justify-content: space-between;
             margin-top: 20px;
         }
 
         .studentOptions.show, .workingClassOptions.show, .houseWifeOptions.show {
-            display: flex; /* Show the thumbnails when needed */
+            display: flex;
         }
 
         .studentOption, .workingClassOption, .houseWifeOption {
@@ -114,7 +114,7 @@
         }
 
         .form-container {
-            max-width: 800px;
+            max-width: 90%;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
@@ -144,7 +144,7 @@
         }
 
         .form-row select {
-            width: 100%;
+            width: 200px;
         }
 
         .form-row button {
@@ -152,13 +152,61 @@
             margin-left: auto;
             margin-right: auto;
             padding: 10px;
-            background-color: rgb(0,23,26);
+            background-color: rgb(2,37,42);
             color: #fff;
             border: none;
             font-weight: bolder;
             border-radius: 5px;
             cursor: pointer;
             font-size: 20px;
+        }
+
+        .toggle-switch {
+            display: inline-block;
+            position: relative;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .toggle-switch input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            background-color: #ccc;
+            border-radius: 30px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: 0.4s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        .toggle-switch input[type="checkbox"]:checked + .toggle-slider {
+            background-color: #2ecc71;
+        }
+
+        .toggle-switch input[type="checkbox"]:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .form-group {
+            flex: 1;
+            margin-right: 10px;
         }
 
     </style>
@@ -170,76 +218,90 @@
     </header>
     <div class="container">
         <form id="cartForm" class="form-container">
+
             <div class="form-row">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" style="margin-left: 72px;" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" style="margin-left: 75px;" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" style="margin-left: 68px;" required>
+                </div>
             </div>
 
             <div class="form-row">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
 
-            <div class="form-row">
-                <label for="mobile">Mobile Number:</label>
-                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
-            </div>
+                <div class="form-group">
+                    <label for="persona">Persona:</label>
+                    <select id="persona" name="persona" style="margin-left: 56px; width: 220px;" required>
+                        <option value="">Select Persona</option>
+                        <option value="Student">Student</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Working class">Working class</option>
+                    </select>
+                </div>
 
-            <div class="form-row">
-                <label for="persona">Persona:</label>
-                <select id="persona" name="persona" required>
-                    <option value="">Select Persona</option>
-                    <option value="Student">Student</option>
-                    <option value="Housewife">Housewife</option>
-                    <option value="Working class">Working class</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="language">Language:</label>
+                    <select id="language" name="language" style="width: 220px; margin-left: 45px;" required>
+                        <option value="">Language</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="English">English</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Punjabi">Punjabi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lastShoppingDate">Last Shopping:</label>
+                <input placeholder="Last Shopping Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="lastShoppingDate" name="lastShoppingDate" style="margin-left: 15px;" required>
+                </div>
 
-            <div class="form-row">
-                <label for="language">Language:</label>
-                <select id="language" name="language" required>
-                    <option value="">Language</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="English">English</option>
-                    <option value="Tamil">Tamil</option>
-                    <option value="Punjabi">Punjabi</option>
-                </select>
-            </div>
-
-            <div class="form-row">
-                <label for="lastShoppingDate">Last Shopping Date:</label>
-                <input placeholder="Last Shopping Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="lastShoppingDate" name="lastShoppingDate" required>
-            </div>
-
-            <div class="form-row">
-                <label for="maxDiscountAmount">Max Discount:</label>
-                <input type="range" id="maxDiscountAmount" name="maxDiscountAmount" min="0" max="1000" step="1" value="0">
-                <span id="maxDiscountValue">0</span>
             </div>
 
 
             <div class="form-row">
-                <label for="codOption">COD Option:</label>
-                <input type="checkbox" id="codOption" name="codOption" value="true"><p>
-                <label for="codOption" style="flex: none; margin-bottom: 10px;">Yes</label>
-            </div>
-
-            <div class="form-row">
-                <label for="freeDeliveryOption">Free Delivery:</label>
-                <input type="checkbox" id="freeDeliveryOption" name="freeDeliveryOption" value="true">
-                <label for="freeDeliveryOption" style="flex: none; margin-bottom: 10px;">Yes</label>
-            </div>
-
-            <div class="form-row">
+                <div class="form-group">
+                    <label for="maxDiscountAmount">Max Discount:</label>
+                    <input type="range" id="maxDiscountAmount" name="maxDiscountAmount" min="0" max="1000" step="1" value="0" style="padding: 0px; margin-left: 20px;">
+                    <span id="maxDiscountValue">0Rs.</span>
+                </div>
+                <div class="form-group">
                 <label for="product">Select a Product:</label>
-                <select id="product" name="product" required>
-                    <option value="">Select a Product</option>
-                    <option value="Product 1">Product 1</option>
-                    <option value="Product 2">Product 2</option>
-                    <option value="Product 3">Product 3</option>
-                </select>
+                    <select id="product" name="product" style="width: 220px;" required>
+                        <option value="">Select a Product</option>
+                        <option value="Product 1">Product 1</option>
+                        <option value="Product 2">Product 2</option>
+                        <option value="Product 3">Product 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="freeDeliveryOption">Free Delivery:</label>
+                    <label class="toggle-switch" style="margin-left: 23px;">
+                        <input type="checkbox" id="freeDeliveryOption" name="freeDeliveryOption" value="true">
+                        <span class="toggle-slider" style="width: 60px;"></span>
+                    </label>
+                </div>
             </div>
 
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="codOption">COD Option:</label>
+                    <label class="toggle-switch" style="margin-left: 30px;">
+                        <input type="checkbox" id="codOption" name="codOption" value="true">
+                        <span class="toggle-slider" style="width: 60px;"></span>
+                    </label>
+                </div>
+            </div>
+
+        
             <div class="form-row" style="justify-content: center;">
                 <div style="display: flex; align-items: center;">
                     <button type="submit" id="shopButton">Shop</button>
@@ -368,7 +430,7 @@
         const maxDiscountValue = document.getElementById("maxDiscountValue");
 
         maxDiscountAmount.addEventListener("input", () => {
-            maxDiscountValue.textContent = maxDiscountAmount.value;
+            maxDiscountValue.textContent = maxDiscountAmount.value+"Rs.";
         });
 
 
@@ -388,6 +450,12 @@
             if (cartForm.checkValidity()) {
                 console.log(persona.value);
                 localStorage.setItem("formData", JSON.stringify(Object.fromEntries(formData.entries())));
+
+                const codOptionChecked = document.getElementById("codOption").checked;
+                const freeDeliveryOptionChecked = document.getElementById("freeDeliveryOption").checked;
+                localStorage.setItem("codOption", codOptionChecked.toString());
+                localStorage.setItem("freeDeliveryOption", freeDeliveryOptionChecked.toString());
+
 
                 thumbnails.classList.add("show");
 
@@ -445,6 +513,11 @@
             inputFields.forEach((field) => {
                 field.value = "";
             });
+
+            const maxDiscountAmount = document.getElementById("maxDiscountAmount");
+            maxDiscountAmount.value = 0;
+            const maxDiscountValue = document.getElementById("maxDiscountValue");
+            maxDiscountValue.textContent = "0Rs.";
     });
     </script>
 </body>
