@@ -13,7 +13,7 @@
         }
 
         header {
-            background-color: rgba(131, 100, 242);
+            background-color: rgb(0,23,26);
             color: #fff;
             text-align: center;
             padding: 20px 0;
@@ -113,69 +113,164 @@
             margin: 0 auto; /* Center the image horizontally */
         }
 
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            flex: 1;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-row input,
+        .form-row select {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-row select {
+            width: 100%;
+        }
+
+        .form-row button {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            background-color: rgb(0,23,26);
+            color: #fff;
+            border: none;
+            font-weight: bolder;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
     </style>
 </head>
 <body>
     <header>
+        <img src="rakuten.png" alt="Logo" style="width: 100px; height: 80px; float: left; margin-left: 10px;">
         <h1>CartCare</h1>
     </header>
     <div class="container">
-        <form id="cartForm">
-            <input type="text" id="name" name="name" placeholder="Name" required>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
-            <select id="persona" name="persona" required>
-                <option value="">Select Persona</option>
-                <option value="Student">Student</option>
-                <option value="Housewife">Housewife</option>
-                <option value="Working class">Working class</option>
-            </select>
+        <form id="cartForm" class="form-container">
+            <div class="form-row">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
 
-            <!--  -->
-            <select id="language" name="language" required>
-                <option value="">Language</option>
-                <option value="Hindi">Hindi</option>
-                <option value="English">English</option>
-                <option value="Tamil">Tamil</option>
-                <option value="Punjabi">Punjabi</option>
-            </select>
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
 
-            <input type="date" id="lastShoppingDate" name="lastShoppingDate" required>
+            <div class="form-row">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+            </div>
 
-            <input type="number" id="maxDiscountAmount" name="maxDiscountAmount" placeholder="Max Discount" required>
+            <div class="form-row">
+                <label for="persona">Persona:</label>
+                <select id="persona" name="persona" required>
+                    <option value="">Select Persona</option>
+                    <option value="Student">Student</option>
+                    <option value="Housewife">Housewife</option>
+                    <option value="Working class">Working class</option>
+                </select>
+            </div>
 
-            <select id="codOption" name="codOption" required>
-                <option value="">COD Option</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
+            <div class="form-row">
+                <label for="language">Language:</label>
+                <select id="language" name="language" required>
+                    <option value="">Language</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="Punjabi">Punjabi</option>
+                </select>
+            </div>
 
-            <select id="freeDeliveryOption" name="freeDeliveryOption" required>
-                <option value="">Free Delivery</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
+            <div class="form-row">
+                <label for="lastShoppingDate">Last Shopping Date:</label>
+                <input placeholder="Last Shopping Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="lastShoppingDate" name="lastShoppingDate" required>
+            </div>
+
+            <div class="form-row">
+                <label for="maxDiscountAmount">Max Discount:</label>
+                <input type="range" id="maxDiscountAmount" name="maxDiscountAmount" min="0" max="1000" step="1" value="0">
+                <span id="maxDiscountValue">0</span>
+            </div>
 
 
-            <button type="submit" id="shopButton">Shop</button>
+            <div class="form-row">
+                <label for="codOption">COD Option:</label>
+                <input type="checkbox" id="codOption" name="codOption" value="true"><p>
+                <label for="codOption" style="flex: none; margin-bottom: 10px;">Yes</label>
+            </div>
+
+            <div class="form-row">
+                <label for="freeDeliveryOption">Free Delivery:</label>
+                <input type="checkbox" id="freeDeliveryOption" name="freeDeliveryOption" value="true">
+                <label for="freeDeliveryOption" style="flex: none; margin-bottom: 10px;">Yes</label>
+            </div>
+
+            <div class="form-row">
+                <label for="product">Select a Product:</label>
+                <select id="product" name="product" required>
+                    <option value="">Select a Product</option>
+                    <option value="Product 1">Product 1</option>
+                    <option value="Product 2">Product 2</option>
+                    <option value="Product 3">Product 3</option>
+                </select>
+            </div>
+
+            <div class="form-row" style="justify-content: center;">
+                <div style="display: flex; align-items: center;">
+                    <button type="submit" id="shopButton">Shop</button>
+                    <a href="tel:YOUR_PHONE_NUMBER" style="text-decoration: none;">
+                        <button type="button" style="width: 80px; background-color: green; margin-left: 30px;">Call</button>
+                    </a>
+                </div>
+            </div>
+            
         </form>
         
-        <div class="thumbnails" id="thumbnails">
-            <div class="thumbnail" onclick="openInNewTab('https://www.myntra.com/')">
-                <img src="myntra.avif" alt="Myntra">
-            </div>
-            <div class="thumbnail" onclick="openInNewTab('https://www.amazon.com/')">
-                <img src="amazon.jpeg" alt="Amazon">
-            </div>
-            <div class="thumbnail" onclick="openInNewTab('https://www.flipkart.com/')">
-                <img src="flipkart.png" alt="Flipkart">
-            </div>
-            <div class="thumbnail" onclick="openInNewTab('https://www.ajio.com/')">
-                <img src="ajio.png" alt="Ajio">
-            </div>
-        </div>
+    </div>
 
-        <h2 style="text-align: center; display: none;" id="suggestionsHeading">Suggestions</h2>
+    <div class="thumbnails" id="thumbnails">
+        <div class="thumbnail" onclick="openInNewTab('https://www.myntra.com/')">
+            <img src="myntra.avif" alt="Myntra">
+        </div>
+        <div class="thumbnail" onclick="openInNewTab('https://www.amazon.com/')">
+            <img src="amazon.jpeg" alt="Amazon">
+        </div>
+        <div class="thumbnail" onclick="openInNewTab('https://www.flipkart.com/')">
+            <img src="flipkart.png" alt="Flipkart">
+        </div>
+        <div class="thumbnail" onclick="openInNewTab('https://www.ajio.com/')">
+            <img src="ajio.png" alt="Ajio">
+        </div>
+    </div>
+
+    <div class="options" id="options"></div>
+
+    <h2 style="text-align: center; display: none;" id="suggestionsHeading">Suggestions</h2>
         
         <div class="studentOptions" id="studentOptions">
             
@@ -258,21 +353,23 @@
                 <p>Cleaning Supplies</p>
             </div>
         </div>
-    </div>
 
-    <div class="options" id="options">
-        <!-- Options based on persona will be displayed here -->
-    </div>  
 
     <script>
         const cartForm = document.getElementById("cartForm");
         const thumbnails = document.getElementById("thumbnails");
-        const persona = document.getElementById("persona");
+        let persona = document.getElementById("persona");
         const studentOptions = document.getElementById("studentOptions");
         const houseWifeOptions = document.getElementById("houseWifeOptions");
         const workingClassOptions = document.getElementById("workingClassOptions");
-        const suggestionsHeading = document.getElementById("suggestionsHeading"); // Get the heading element
+        const suggestionsHeading = document.getElementById("suggestionsHeading");
 
+        const maxDiscountAmount = document.getElementById("maxDiscountAmount");
+        const maxDiscountValue = document.getElementById("maxDiscountValue");
+
+        maxDiscountAmount.addEventListener("input", () => {
+            maxDiscountValue.textContent = maxDiscountAmount.value;
+        });
 
 
         function openInNewTab(url) {
@@ -285,11 +382,10 @@
         }
 
         cartForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();
             const formData = new FormData(cartForm);
 
             if (cartForm.checkValidity()) {
-                // Store the form data in local storage
                 console.log(persona.value);
                 localStorage.setItem("formData", JSON.stringify(Object.fromEntries(formData.entries())));
 
@@ -314,6 +410,26 @@
             }
         });
 
+        persona.addEventListener("change", (e)=> {
+            e.preventDefault();
+            if(studentOptions.classList.contains("show") || workingClassOptions.classList.contains("show") || houseWifeOptions.classList.contains("show")) {
+            persona = document.getElementById("persona");
+            if(persona.value === "Housewife") {
+                    studentOptions.classList.remove("show");
+                    workingClassOptions.classList.remove("show");
+                    houseWifeOptions.classList.add("show");
+                } else if(persona.value === "Student") {
+                    workingClassOptions.classList.remove("show");
+                    houseWifeOptions.classList.remove("show");
+                    studentOptions.classList.add("show");
+                } else if(persona.value === "Working class") {
+                    houseWifeOptions.classList.remove("show");
+                    studentOptions.classList.remove("show");
+                    workingClassOptions.classList.add("show");
+                }
+            }
+        })
+
         // Check if there is stored form data and populate the form fields
         const storedFormData = localStorage.getItem("formData");
         if (storedFormData) {
@@ -324,15 +440,12 @@
         }
 
 
-        // Clear input fields on page load (reset)  
         window.addEventListener("load", () => {
             const inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
             inputFields.forEach((field) => {
                 field.value = "";
             });
     });
-
-
     </script>
 </body>
 </html>
